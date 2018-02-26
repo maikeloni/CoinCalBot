@@ -15,3 +15,5 @@ A bot fetching coinmarketcal.com and posting the events in discord.
 * ```days_xxx``` and ```categories_xxx```:
   if event is earlier than ```days_xxx``` days in the future and if a category of the event is in ```categories_xxx```, then it will be posted.
  * ```days_short``` < ```days_med``` < ```days_long```
+ 
+ Every event is posted three times respectively the ```days_xxx```
