@@ -13,7 +13,7 @@ categories_med = config.get('Discord', 'categories_med').split(",")
 days_short = config.get('Discord', 'days_short')
 categories_short = config.get('Discord', 'categories_short').split(",")
 
-if days_short >= days_med or days_med >= days_long:
+if int(days_short) >= int(days_med) or int(days_med) >= int(days_long):
     print("Error: You have to set days_short < days_med < days_long")
 else:
     while True:
