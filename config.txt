@@ -1,0 +1,15 @@
+[Discord]
+url = 
+
+# Longest time span
+days_long = 180
+# Categories for the events days_long days in the future
+categories_long = Airdrop,AMA/Q&A,Announcement/News,Burn,CommunityEvent,Conference,Exchange,Fork/Swap,Halving,Other,Partnership,Rebranding,Release,Roadmap,Whitepaper
+
+# Medium time span
+days_med = 42
+categories_med = Announcement/News,Burn,Exchange,Fork/Swap,Halving,Rebranding,Release,Roadmap
+
+# Shortest time span
+days_short= 7
+categories_short = Burn,Exchange,Fork/Swap,Rebranding
