@@ -21,6 +21,13 @@ def postEvent(event, url):
         embed.add_field(name="Coin: **" + event["coins"][0]["name"] + " (" + event["coins"][0]["symbol"] + ")**", value=date, inline=False)
     if event["title"] and event["description"]:
         embed.add_field(name=event["title"], value=event["description"], inline=False)
+    if event["categories"] != []:
+        categories = ""
+        for cat in event["categories"]:
+            categories += cat + " "
+        #  if event["categories"].index(cat) < len(event["categories"])-1:
+        #      categories += ", "
+        embed.add_field(name="Categories", value=categories, inline=False)
     if event["proof"]:
         embed.set_image(event["proof"])
     if event["source"]:
@@ -160,10 +167,19 @@ def discord(webhook_url, days_long, categories_long, days_med, categories_med, d
             continue
 
         # Check if event is in the wanted time frame and has correct categories
-        if eventIsInTime(event, days) and eventHasCategory(event, categories):
+        EVENT_IS_IN_TIME = False
+        EVENT_HAS_CATEGORY = False
+        if eventIsInTime(event, days):
+            EVENT_IS_IN_TIME = True
+        if eventHasCategory(event, categories):
+            EVENT_HAS_CATEGORY = True
+        if not EVENT_HAS_CATEGORY:
+            print("Event won't be posted. Wrong categories.")
+        if not EVENT_IS_IN_TIME:
+            print("Event won't be posted. Event too far away.")
+        if EVENT_HAS_CATEGORY and EVENT_IS_IN_TIME: 
             updateDB(event)
             postEvent(event, webhook_url)
             print("Posted!")
-        else:
-            print("Event won't be posted. Either too far away or wrong categories.")
+        print("")
     return None
