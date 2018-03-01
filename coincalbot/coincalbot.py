@@ -77,7 +77,7 @@ def fetchCoinMarketCal(days):
         pattern = re.compile("(?<=\?page=)[0-9]*")
         max_page = int(max(pattern.findall(startpage.text)))
     except Exception as e:
-        events = fetchCoinMarketCal(days)
+        events = []
         return events
 
     events = []
