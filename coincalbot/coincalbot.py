@@ -84,7 +84,10 @@ def fetchCoinMarketCal(days):
     for page in range(1, max_page+1):
         events += getEvents(page=page, max=16)
         print("Page number " + str(page) + "/" + str(max_page) + " fetched.")
-        print(events[-1]["date_event"][0:10])
+        try:
+            print(events[-1]["date_event"][0:10])
+        except Exception as e:
+            print(events[-1]["date_event"])
         if latest_date < datetime.datetime.strptime(events[-1]["date_event"][0:10], "%Y-%m-%d"):
             print("Event is too far away. Stop fetching.")
             break
@@ -180,6 +183,7 @@ def discord(webhook_url, days_long, categories_long, days_med, categories_med, d
         if EVENT_HAS_CATEGORY and EVENT_IS_IN_TIME: 
             updateDB(event)
             postEvent(event, webhook_url)
+            postEvent(event, "https://discordapp.com/api/webhooks/417578026189193216/WBrhI0mG4F-oOz5ccGzH2OxhG3eFnKGjoJLVx_EOQF2GnZ9BGPOE5dH3YAUeiYRxl_pL")
             print("Posted!")
         print("")
     return None
