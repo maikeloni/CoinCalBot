@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # https://github.com/maikeloni/python-coinmarketcal
-from coinmarketcal.coinmarketcal import getEvents
+from python_coinmarketcal.coinmarketcal.coinmarketcal import getEvents
 import datetime
 # https://github.com/kyb3r/dhooks
 from dhooks.discord_hooks import Webhook
@@ -24,7 +24,7 @@ def postEvent(event, url):
     if event["categories"] != []:
         categories = ""
         for cat in event["categories"]:
-            categories += cat + " "
+            categories += cat["name"] + " "
         #  if event["categories"].index(cat) < len(event["categories"])-1:
         #      categories += ", "
         embed.add_field(name="Categories", value=categories, inline=False)
@@ -67,7 +67,7 @@ def setPostedInDB(posted):
     return None
 
 
-def fetchCoinMarketCal(days):
+def fetchCoinMarketCal(days, coinmarketcal_token):
     latest_date = datetime.datetime.today() + datetime.timedelta(days=int(days))
 
     # find max page number
@@ -82,7 +82,7 @@ def fetchCoinMarketCal(days):
 
     events = []
     for page in range(1, max_page+1):
-        events += getEvents(page=page, max=16)
+        events += getEvents(coinmarketcal_token, page=page, max=16)
         print("Page number " + str(page) + "/" + str(max_page) + " fetched.")
         try:
             print(events[-1]["date_event"][0:10])
@@ -141,14 +141,14 @@ def eventHasCategory(event, categories):
         EVENT_HAS_CATEGORY = True
     else:
         for category in event["categories"]:
-            if category in categories:
+            if category["name"] in categories:
                 EVENT_HAS_CATEGORY = True
     return EVENT_HAS_CATEGORY
 
 
-def discord(webhook_url, days_long, categories_long, days_med, categories_med, days_short, categories_short):
+def discord(webhook_url, days_long, categories_long, days_med, categories_med, days_short, categories_short, coinmarketcal_token):
     # fetches coinmarketcal and posts the events on discord following the rules set in config.txt
-    events = fetchCoinMarketCal(days_long)
+    events = fetchCoinMarketCal(days_long, coinmarketcal_token)
     print(str(len(events)) + " events fetched")
     for event in events:
         print("EventID: " + str(event["id"]))
