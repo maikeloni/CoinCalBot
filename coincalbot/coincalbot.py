@@ -84,7 +84,10 @@ def fetchCoinMarketCal(days):
     for page in range(1, max_page+1):
         events += getEvents(page=page, max=16)
         print("Page number " + str(page) + "/" + str(max_page) + " fetched.")
-        print(events[-1]["date_event"][0:10])
+        try:
+            print(events[-1]["date_event"][0:10])
+        except Exception as e:
+            print(events[-1]["date_event"])
         if latest_date < datetime.datetime.strptime(events[-1]["date_event"][0:10], "%Y-%m-%d"):
             print("Event is too far away. Stop fetching.")
             break
