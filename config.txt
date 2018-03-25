@@ -13,3 +13,7 @@ categories_med = Announcement/News,Burn,Exchange,Fork/Swap,Halving,Rebranding,Re
 # Shortest time span
 days_short= 7
 categories_short = Burn,Exchange,Fork/Swap,Rebranding
+
+[Coinmarketcal]
+id =
+secret =
