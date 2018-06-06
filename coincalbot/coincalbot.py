@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# https://github.com/maikeloni/python-coinmarketcal
+# https://github.com/mfuellbier/python-coinmarketcal
 from python_coinmarketcal.coinmarketcal.coinmarketcal import getEvents
 import datetime
 # https://github.com/kyb3r/dhooks
