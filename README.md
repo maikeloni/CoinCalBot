@@ -3,13 +3,13 @@ A bot fetching coinmarketcal.com and posting the events in discord.
 
 ## Requirements
 * https://github.com/kyb3r/dhooks
-* https://github.com/maikeloni/python-coinmarketcal
+* https://github.com/mfuellbier/python-coinmarketcal
 
 ## Setup
 ### Setup coinmarketcal
 1. `cd python-coincalbot`
-2. `git clone https://github.com/maikeloni/python-coinmarketcal.git python_coinmarketcal`
-3. Set Coinmarketcal `id` and `secret` in config.txt. See https://github.com/maikeloni/python-coinmarketcal for more information.
+2. `git clone https://github.com/mfuellbier/python-coinmarketcal.git python_coinmarketcal`
+3. Set Coinmarketcal `id` and `secret` in config.txt. See https://github.com/mfuellbier/python-coinmarketcal for more information.
 ### Setup discord
 Set discord webhook url in config.txt (see https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks)
 ## Launch the bot
